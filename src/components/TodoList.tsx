@@ -1,14 +1,16 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import TodoItem from './TodoItem';
+import { AppStrings, Colors } from '../utility/Constants';
 
 export default function TodoList({ list }: { list: string[] }) {
   return (
     <FlatList
+      inverted={true}
       style={styles.container}
       data={list}
-      keyExtractor={(item, index) => index.toString()}
+      keyExtractor={(_, index) => index.toString()}
       renderItem={({ item }) => <TodoItem item={item} />}
-      contentContainerStyle={{ paddingBottom: 20 }}
+      contentContainerStyle={styles.contentContainer}
       ListEmptyComponent={EmptyListComponent}
     />
   );
@@ -18,7 +20,7 @@ function EmptyListComponent() {
   return (
     <View style={styles.emptyListContainer}>
       <Text style={styles.emptyListText}>
-        No Todos available. Please add some!
+        {AppStrings.EMPTY_LIST_MESSAGE}
       </Text>
     </View>
   );
@@ -27,9 +29,14 @@ function EmptyListComponent() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e6dcdc',
+    backgroundColor: Colors.PRIMARY,
     borderRadius: 40,
     padding: 20,
+  },
+  contentContainer: {
+    flexGrow: 1,
+    justifyContent: 'flex-end',
+    paddingBottom: 20
   },
   emptyListContainer: {
     flex: 1,

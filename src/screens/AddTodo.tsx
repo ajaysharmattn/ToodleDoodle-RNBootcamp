@@ -4,9 +4,10 @@ import { AppButton } from "../components/AppButton";
 import { useTodo } from "../utility/todo-context";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../utility/Navigator";
+import { AppStrings, Colors, NavigatorScreenNames } from "../utility/Constants";
 
 
-type AddTodoScreenNavigationProps = NativeStackScreenProps<RootStackParamList, 'AddTodo'>;
+type AddTodoScreenNavigationProps = NativeStackScreenProps<RootStackParamList, NavigatorScreenNames.ADD_TODO>;
 
 export default function AddTodoScreen({navigation}: AddTodoScreenNavigationProps) {
     const [todo, setTodo] = useState("");
@@ -16,23 +17,23 @@ export default function AddTodoScreen({navigation}: AddTodoScreenNavigationProps
         if(todo.trim() === "") return;
         addTodo(todo.trim());
         setTodo("");
-        Alert.alert("Todo Added", "Your todo has been added successfully!", [
-            { text: "OK", onPress: () => navigation.navigate('Home') }
+        Alert.alert(AppStrings.ADD_TODO_ALERT_SUCCESS_TITLE, AppStrings.ADD_TODO_ALERT_SUCCESS_MESSAGE, [
+            { text: AppStrings.ADD_TODO_ALERT_OK_TEXT, onPress: () => navigation.pop() }
         ]);
     }
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Add a new Todo 😉</Text>
-            <TextInput value={todo} onChangeText={text => setTodo(text)} placeholder="Enter your todo here" style={styles.input} />
-            <AppButton text="Add Todo" onPress={addTodoFn} />
+            <Text style={styles.title}>{AppStrings.ADD_TODO_SCREEN_TITLE}</Text>
+            <TextInput value={todo} onChangeText={text => setTodo(text)} placeholder={AppStrings.ADD_TODO_INPUT_PLACEHOLDER} style={styles.input} />
+            <AppButton text={AppStrings.ADD_TODO_BUTTON_TEXT} onPress={addTodoFn} />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#e6dcdc',
+        backgroundColor: Colors.PRIMARY,
         borderRadius: 40,
         padding: 20,
         margin: 20,

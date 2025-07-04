@@ -2,16 +2,17 @@ import { StyleSheet, Text, View } from "react-native";
 import { AppButton } from "../components/AppButton";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../utility/Navigator";
+import { AppStrings, Colors, NavigatorScreenNames } from "../utility/Constants";
 
-type HomeScreenNavigationProp = NativeStackScreenProps<RootStackParamList, 'Home'>
+type HomeScreenNavigationProp = NativeStackScreenProps<RootStackParamList, NavigatorScreenNames.HOME>;
 
 export default function HomeScreen({navigation}: HomeScreenNavigationProp) {
     return(
         <View style={styles.container}>
-            <Text style={styles.title}>Welcome to ToodleDoodle 😊</Text>
+            <Text style={styles.title}>{AppStrings.HOME_SCREEN_TITLE}</Text>
             <View style={styles.buttonColumn}>
-                <AppButton text="Add Todo" onPress={()=>navigation.navigate('AddTodo')} />
-                <AppButton text="View Todos" onPress={()=>navigation.navigate('Todos')}/>
+                <AppButton text="Add Todo" onPress={()=>navigation.navigate(NavigatorScreenNames.ADD_TODO)} />
+                <AppButton text="View Todos" onPress={()=>navigation.navigate(NavigatorScreenNames.TODOS)}/>
             </View>
         </View>
     )
@@ -20,7 +21,7 @@ export default function HomeScreen({navigation}: HomeScreenNavigationProp) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#e6dcdc',
+        backgroundColor: Colors.PRIMARY,
         borderRadius: 40,    
         margin: 20,         
         padding: 20,

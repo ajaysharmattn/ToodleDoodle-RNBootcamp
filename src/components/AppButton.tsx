@@ -1,4 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native"
+import { Colors } from "../utility/Constants"
 
 export const AppButton = ({text, onPress}: {text: string, onPress: () => void}) => {
     return(
@@ -12,7 +13,7 @@ export const AppButton = ({text, onPress}: {text: string, onPress: () => void}) 
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: '#e6dcdc', 
+        backgroundColor: Colors.PRIMARY, 
         padding: 20,
         borderRadius: 40,
         alignItems: 'center',
