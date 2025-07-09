@@ -2,6 +2,9 @@ export enum NavigatorScreenNames {
     HOME = 'Home',
     ADD_TODO = 'AddTodo',
     TODOS = 'Todos',
+    PROFILE = 'Profile',
+    LOGIN = 'Login',
+    SIGNUP = 'Signup',
 }
 
 export enum AppStrings {
@@ -17,4 +20,15 @@ export enum AppStrings {
 
 export enum Colors {
     PRIMARY = '#e6dcdc'
+}
+
+export interface USER {
+  username: string;
+  phone: string;
+  email: string;
+  password: string;
+}
+
+export interface TODO {
+    [userPhone: string]: string[] 
 }

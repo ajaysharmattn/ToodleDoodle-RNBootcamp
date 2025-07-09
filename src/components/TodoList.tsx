@@ -5,7 +5,7 @@ import { AppStrings, Colors } from '../utility/Constants';
 export default function TodoList({ list }: { list: string[] }) {
   return (
     <FlatList
-      inverted={true}
+      inverted={list.length > 0}
       style={styles.container}
       data={list}
       keyExtractor={(_, index) => index.toString()}

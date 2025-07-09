@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { Text, TextInput, View, StyleSheet, Alert } from "react-native";
 import { AppButton } from "../components/AppButton";
-import { useTodo } from "../utility/TodoContext";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../utility/Navigator";
 import { AppStrings, Colors, NavigatorScreenNames } from "../utility/Constants";
+import { useAppDispatch } from "../utility/Store/Store";
+import { addTodo } from "../utility/Store/AppSlice";
 
 
 type AddTodoScreenNavigationProps = NativeStackScreenProps<RootStackParamList, NavigatorScreenNames.ADD_TODO>;
 
 export default function AddTodoScreen({navigation}: AddTodoScreenNavigationProps) {
     const [todo, setTodo] = useState("");
-    const {addTodo} = useTodo();
+    const dispatch = useAppDispatch();
 
     const addTodoFn = async () => {
         if(todo.trim() === "") return;
-        addTodo(todo.trim());
+        dispatch(addTodo(todo));
         setTodo("");
         Alert.alert(AppStrings.ADD_TODO_ALERT_SUCCESS_TITLE, AppStrings.ADD_TODO_ALERT_SUCCESS_MESSAGE, [
             { text: AppStrings.ADD_TODO_ALERT_OK_TEXT, onPress: () => navigation.pop() }

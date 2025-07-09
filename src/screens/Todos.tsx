@@ -1,9 +1,21 @@
 import { StyleSheet, View } from "react-native";
 import TodoList from "../components/TodoList";
-import { useTodo } from "../utility/TodoContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../utility/Store/Store";
+import { useMemo } from "react";
 
 export default function TodosScreen() {
-    const { todos } = useTodo();
+    const currentUserId = useSelector((state: RootState) => state.appReducer.currentUserPhone);
+    const allTodos = useSelector((state: RootState) => state.appReducer.todos);
+    const todos = useMemo(() => (
+        currentUserId !== null
+            ? allTodos
+                  .filter(todo => Object.keys(todo).includes(currentUserId))
+                  .flatMap(todo => todo[currentUserId])
+            : []
+    ), [allTodos, currentUserId]);
+
+    console.log('Todos:', todos);
 
     return (
         <View style={styles.container}>
