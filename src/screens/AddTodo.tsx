@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Text, TextInput, View, StyleSheet, Alert } from "react-native";
 import { AppButton } from "../components/AppButton";
-import { useTodo } from "../utility/todo-context";
+import { useTodo } from "../utility/TodoContext";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../utility/Navigator";
 import { AppStrings, Colors, NavigatorScreenNames } from "../utility/Constants";

@@ -1,6 +1,6 @@
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import Navigator from './utility/Navigator';
-import { TodoProvider } from './utility/todo-context';
+import { TodoProvider } from './utility/TodoContext';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';

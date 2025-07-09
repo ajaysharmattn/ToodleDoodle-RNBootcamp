@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import TodoList from "../components/TodoList";
-import { useTodo } from "../utility/todo-context";
+import { useTodo } from "../utility/TodoContext";
 
 export default function TodosScreen() {
     const { todos } = useTodo();
