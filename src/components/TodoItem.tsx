@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { Colors } from "../utility/Constants";
 
 export default function TodoItem({item}: {item: string}) {
     return (
@@ -12,10 +13,10 @@ const styles = StyleSheet.create({
     todoItem: {
         padding: 10,
         borderBottomWidth: 1,
-        borderBottomColor: '#ccc'
+        borderBottomColor: Colors.BORDER
     },
     todoText: {
         fontSize: 16,
-        color: '#1b1616'
+        color: Colors.TEXT_PRIMARY
     }
 })

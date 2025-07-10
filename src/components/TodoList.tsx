@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   emptyListText: {
-    color: '#1b1616',
+    color: Colors.TEXT_PRIMARY,
     fontSize: 16
   },
 });

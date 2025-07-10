@@ -3,6 +3,7 @@ import TodoList from "../components/TodoList";
 import { useSelector } from "react-redux";
 import { RootState } from "../utility/Store/Store";
 import { useMemo } from "react";
+import { Colors } from "../utility/Constants";
 
 export default function TodosScreen() {
     const currentUserId = useSelector((state: RootState) => state.appReducer.currentUserPhone);
@@ -28,6 +29,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,    
         padding: 20,
-        backgroundColor: '#f9f9f9'
+        backgroundColor: Colors.BACKGROUND
     }
 });

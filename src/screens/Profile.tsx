@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
+import { AppStrings, Colors } from '../utility/Constants';
 import { RootState } from "../utility/Store/Store";
 import { useState } from "react";
 import { updateUserDetail } from "../utility/Store/AppSlice";
@@ -26,7 +27,7 @@ export default function ProfileScreen() {
             email: editEmail,
             username: editUsername,}))
         setEditing(false);
-        Alert.alert('Profile updated');
+        Alert.alert(AppStrings.PROFILE_UPDATED);
     };
 
     const handleLogout = () => {
@@ -35,9 +36,9 @@ export default function ProfileScreen() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Profile</Text>
+            <Text style={styles.title}>{AppStrings.PROFILE_SCREEN_TITLE}</Text>
             <View style={styles.infoRow}>
-                <Text style={styles.label}>Username:</Text>
+                <Text style={styles.label}>{AppStrings.PROFILE_USERNAME_LABEL}</Text>
                 {editing ? (
                     <TextInput
                         style={styles.input}
@@ -50,11 +51,11 @@ export default function ProfileScreen() {
                 )}
             </View>
             <View style={styles.infoRow}>
-                <Text style={styles.label}>Phone:</Text>
+                <Text style={styles.label}>{AppStrings.PROFILE_PHONE_LABEL}</Text>
                 <Text style={styles.value}>{phone || '-'}</Text>
             </View>
             <View style={styles.infoRow}>
-                <Text style={styles.label}>Email:</Text>
+                <Text style={styles.label}>{AppStrings.PROFILE_EMAIL_LABEL}</Text>
                 {editing ? (
                     <TextInput
                         style={styles.input}
@@ -86,14 +87,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f9f9f9',
+        backgroundColor: Colors.BACKGROUND,
         padding: 24,
     },
     title: {
         fontSize: 28,
         fontWeight: 'bold',
         marginBottom: 32,
-        color: '#333',
+        color: Colors.PROFILE_TITLE,
     },
     infoRow: {
         flexDirection: 'row',
@@ -105,23 +106,23 @@ const styles = StyleSheet.create({
     },
     label: {
         fontSize: 18,
-        color: '#666',
+        color: Colors.LABEL,
         fontWeight: '600',
         width: 100,
     },
     value: {
         fontSize: 18,
-        color: '#222',
+        color: Colors.VALUE,
         fontWeight: '400',
         flex: 1,
         textAlign: 'right',
     },
     input: {
         fontSize: 18,
-        color: '#222',
-        backgroundColor: '#fff',
+        color: Colors.VALUE,
+        backgroundColor: Colors.INPUT_BG,
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: Colors.BORDER,
         borderRadius: 6,
         paddingHorizontal: 8,
         paddingVertical: 4,

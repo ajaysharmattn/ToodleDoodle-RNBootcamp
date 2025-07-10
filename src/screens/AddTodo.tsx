@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 18,
-        color: '#1b1616',
+        color: Colors.TEXT_PRIMARY,
         marginBottom: 10,
         fontWeight: 'bold',
     },
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 18,
         marginVertical: 12,
         fontSize: 17,
-        backgroundColor: '#f7f5fa',
-        color: '#1b1616'
+        backgroundColor: Colors.INPUT_BG,
+        color: Colors.TEXT_PRIMARY,
     }
 });

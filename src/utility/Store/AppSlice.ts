@@ -22,7 +22,7 @@ export const appSlice = createSlice({
   name: 'appState',
   initialState,
   reducers: {
-    loginUser: (state, action: PayloadAction<{ currenUserPhone: string }>) => {
+    setAuthState: (state, action: PayloadAction<{ currenUserPhone: string }>) => {
       const { currenUserPhone } = action.payload;
       state.currentUserPhone = currenUserPhone;
       state.isLoggedIn = true;
@@ -73,7 +73,7 @@ export const appSlice = createSlice({
           return;
       }
     },
-    logoutState: state => {
+    removeAuthState: state => {
       state.currentUserPhone = '';
       state.isLoggedIn = false;
     },
@@ -92,7 +92,7 @@ export const appSlice = createSlice({
   },
 });
 
-export const { loginUser, addNewUser, updateUserDetail, logoutState, addTodo } =
+export const { setAuthState, addNewUser, updateUserDetail, removeAuthState, addTodo } =
   appSlice.actions;
 
 export default appSlice.reducer;

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet, Text, Alert } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { AuthStackParamList } from "../utility/Navigator";
-import { NavigatorScreenNames, Colors } from "../utility/Constants";
 import { AppButton } from "../components/AppButton";
-import useAuth from "../utility/useAuth";
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { AuthStackParamList } from '../utility/Navigator';
+import { NavigatorScreenNames, Colors, AppStrings } from '../utility/Constants';
+import useAuth from '../utility/useAuth';
 
 type LoginScreenNavigationProps = NativeStackScreenProps<AuthStackParamList, NavigatorScreenNames.LOGIN>;
 
@@ -15,7 +15,7 @@ export default function LoginScreen({navigation}: LoginScreenNavigationProps) {
 
     const handleLogin = () => {
         if (!phone || !password) {
-            Alert.alert("Error", "Please enter both phone and password.");
+            Alert.alert(AppStrings.LOGIN_ERROR_TITLE, AppStrings.LOGIN_ERROR_MESSAGE);
             return;
         }
         loginUserFunction({ phone, password })
@@ -25,10 +25,10 @@ export default function LoginScreen({navigation}: LoginScreenNavigationProps) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Login</Text>
+            <Text style={styles.title}>{AppStrings.LOGIN_SCREEN_TITLE}</Text>
             <TextInput
                 style={styles.input}
-                placeholder="Phone Number"
+                placeholder={AppStrings.ADD_TODO_INPUT_PLACEHOLDER}
                 keyboardType="phone-pad"
                 value={phone}
                 onChangeText={setPhone}
@@ -36,14 +36,14 @@ export default function LoginScreen({navigation}: LoginScreenNavigationProps) {
             />
             <TextInput
                 style={styles.input}
-                placeholder="Password"
+                placeholder={AppStrings.LOGIN_BUTTON_TEXT}
                 secureTextEntry
                 value={password}
                 onChangeText={setPassword}
                 placeholderTextColor="#888"
             />
-            <AppButton text="Login" onPress={handleLogin} />
-            <AppButton text="Don't have an account? Register" onPress={()=>navigation.replace(NavigatorScreenNames.SIGNUP)} />
+            <AppButton text={AppStrings.LOGIN_BUTTON_TEXT} onPress={handleLogin} />
+            <AppButton text={AppStrings.LOGIN_REGISTER_SWITCH_TEXT} onPress={()=>navigation.replace(NavigatorScreenNames.SIGNUP)} />
         </View>
     );
 }
@@ -61,20 +61,20 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 22,
         fontWeight: "bold",
-        color: '#1b1616',
+        color: Colors.TEXT_PRIMARY,
         marginBottom: 24,
         padding: 10,
     },
     input: {
         width: "100%",
         height: 48,
-        borderColor: "#ccc",
+        borderColor: Colors.BORDER,
         borderWidth: 1,
         borderRadius: 20,
         marginBottom: 16,
         paddingHorizontal: 18,
         fontSize: 16,
-        backgroundColor: '#f7f5fa',
+        backgroundColor: Colors.INPUT_BG,
         color: '#1b1616',
     },
     buttonWrapper: {

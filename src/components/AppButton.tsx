@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 10,
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: Colors.BORDER,
     },
     buttonText: {   
-        color: '#1b1616',
+        color: Colors.TEXT_PRIMARY,
         fontSize: 16,
         fontWeight: 'bold',
     }

@@ -11,8 +11,8 @@ export default function HomeScreen({navigation}: HomeScreenNavigationProp) {
         <View style={styles.container}>
             <Text style={styles.title}>{AppStrings.HOME_SCREEN_TITLE}</Text>
             <View style={styles.buttonColumn}>
-                <AppButton text="Add Todo" onPress={()=>navigation.navigate(NavigatorScreenNames.ADD_TODO)} />
-                <AppButton text="View Todos" onPress={()=>navigation.navigate(NavigatorScreenNames.TODOS)}/>
+                <AppButton text={AppStrings.ADD_TODO_BUTTON_TEXT} onPress={()=>navigation.navigate(NavigatorScreenNames.ADD_TODO)} />
+                <AppButton text={NavigatorScreenNames.TODOS} onPress={()=>navigation.navigate(NavigatorScreenNames.TODOS)}/>
             </View>
         </View>
     )
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: '#1b1616',        
+        color: Colors.TEXT_PRIMARY,
         padding: 10,               
     },
     buttonColumn: {

@@ -4,7 +4,8 @@ import { Alert } from "react-native";
 import { setUserData } from "./Store/UserSlice";
 import { verifyValidPassword, verifyValidPhoneNumber } from "./UtilityFunctions";
 import { USER } from "./Constants";
-import { addNewUser, loginUser } from "./Store/AppSlice";
+import { addNewUser, removeAuthState, setAuthState } from "./Store/AppSlice";
+import { AppStrings } from './Constants';
 
 export default function useAuth() {
     const isLoggedIn = useSelector((state: RootState) => state.appReducer.isLoggedIn);
@@ -28,15 +29,15 @@ export default function useAuth() {
           email: User.email,
           username: User.username,
         }));
-        dispatch(loginUser({ currenUserPhone: User.phone }));
+        dispatch(setAuthState({ currenUserPhone: User.phone }));
       } else {
-        Alert.alert('Login Failed', 'User not found.');
+        Alert.alert(AppStrings.LOGIN_FAILED_TITLE, AppStrings.LOGIN_FAILED_MESSAGE);
       }
     }
 
     const registerUserFunction = ({phone, password}: {phone: string; password: string}) => {
         if (users.some((user) => user.phone === phone)) {
-          Alert.alert('User Already Exists', 'A user with this phone number already exists.');
+          Alert.alert(AppStrings.USER_ALREADY_EXISTS_TITLE, AppStrings.USER_ALREADY_EXISTS_MESSAGE);
           return;
         }
       if (verifyValidPhoneNumber(phone) && verifyValidPassword(password)) {
@@ -48,13 +49,13 @@ export default function useAuth() {
         };
         dispatch(addNewUser(newUser));
         Alert.alert(
-          'User Registered',
-          'You have successfully registered. Please login to continue.',
+          AppStrings.USER_REGISTERED_TITLE,
+          AppStrings.USER_REGISTERED_MESSAGE,
         );
       } else {
         Alert.alert(
-          'Invalid Input',
-          'Please enter a valid phone number and password.',
+          AppStrings.INVALID_INPUT_TITLE,
+          AppStrings.INVALID_INPUT_MESSAGE,
         );
       }
     }
@@ -65,8 +66,8 @@ export default function useAuth() {
             email: '',
             username: '',
         }));
-        dispatch(loginUser({ currenUserPhone: '' }));
-        Alert.alert('Logged out successfully');
+        dispatch(removeAuthState());
+        Alert.alert(AppStrings.LOGOUT_SUCCESS);
     }
 
 
